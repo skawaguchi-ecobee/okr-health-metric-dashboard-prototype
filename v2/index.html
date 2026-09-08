@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><link rel="stylesheet" href="_ds/industry-97f34acc-96f8-4b4d-88f5-5182651d5659/styles.css"><script src="_ds/industry-97f34acc-96f8-4b4d-88f5-5182651d5659/_ds_bundle.js"></script><style>html,body{margin:0;height:100%;overflow:hidden;background:var(--color-bg)}*{box-sizing:border-box}.mono{font-variant-numeric:tabular-nums}</style></helmet>
+<div style="width:100vw;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center;background:var(--color-bg);color:var(--color-text);font-family:var(--font-body)">
+<div style="width:1728px;height:1117px;flex:none;transform:scale({{ fitScale }});transform-origin:center center">
+
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+<div style="height:100%;padding:clamp(10px,1.2vh,18px) clamp(20px,2vw,40px);display:flex;flex-direction:column;gap:clamp(6px,0.9vh,14px)">
+
+<div style="display:flex;align-items:flex-end;justify-content:space-between;gap:32px">
+<div>
+<div style="font-family:var(--font-heading);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--color-accent-700)">ECOBEE</div>
+<h1 style="margin:2px 0 4px;font-size:34px">Q3 FY26 OKRs &amp; Health Metrics</h1>
+<div style="display:flex;align-items:center;gap:10px">
+<span style="font-family:var(--font-heading);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--color-neutral-600)">Viewing</span>
+<div class="seg">
+<sc-for list="{{ buScope }}" as="opt" hint-placeholder-count="4">
+<button class="seg-opt" onClick="{{ opt.onClick }}" style="font-family:var(--font-heading);font-size:11px;letter-spacing:.05em;padding:3px 9px;background:{{ opt.bg }};color:{{ opt.fg }}">{{ opt.label }}</button>
+</sc-for>
+</div>
+<sc-if value="{{ showGroups }}" hint-placeholder-val="{{ false }}">
+<span style="color:var(--color-neutral-500);font-size:11px">/</span>
+<div class="seg">
+<sc-for list="{{ groupScope }}" as="opt" hint-placeholder-count="4">
+<button class="seg-opt" onClick="{{ opt.onClick }}" style="font-family:var(--font-heading);font-size:11px;letter-spacing:.05em;padding:3px 9px;background:{{ opt.bg }};color:{{ opt.fg }}">{{ opt.label }}</button>
+</sc-for>
+</div>
+</sc-if>
+<button class="btn btn-ghost" onClick="{{ myView }}" style="font-family:var(--font-heading);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:3px 7px">My view</button>
+<span style="font-size:11px;color:var(--color-neutral-700);padding-left:4px">{{ scopeNote }}</span>
+</div>
+</div>
+<div style="display:flex;align-items:center;gap:28px">
+<div style="display:flex;align-items:baseline;gap:10px">
+<span class="mono" style="font-family:var(--font-heading);font-size:32px;line-height:1">21</span>
+<span style="font-family:var(--font-heading);font-size:12px;letter-spacing:.1em;text-transform:uppercase;line-height:1.25;color:var(--color-neutral-700)">Working days<br>left in quarter</span>
+</div>
+<div style="display:flex;align-items:baseline;gap:10px">
+<span class="mono" style="font-family:var(--font-heading);font-size:32px;line-height:1;color:{{ incColor }}">{{ incCount }}</span>
+<span style="font-family:var(--font-heading);font-size:12px;letter-spacing:.1em;text-transform:uppercase;line-height:1.25;color:var(--color-neutral-700)">Sev1–2 incidents<br>{{ rangeLabel }}</span>
+</div>
+<div style="display:flex;flex-direction:column;justify-content:space-between;gap:6px;align-items:flex-end">
+<div class="seg">
+<button class="seg-opt" onClick="{{ set30 }}" style="font-family:var(--font-heading);font-size:14px;letter-spacing:.06em;padding:6px 16px;background:{{ bg30 }};color:{{ fg30 }}">30 DAYS</button>
+<button class="seg-opt" onClick="{{ set90 }}" style="font-family:var(--font-heading);font-size:14px;letter-spacing:.06em;padding:6px 16px;background:{{ bg90 }};color:{{ fg90 }}">90 DAYS</button>
+</div>
+<span class="mono" style="font-size:13px;color:var(--color-neutral-700)">Refreshed 19 Aug 2026 · 06:00 PT</span>
+</div>
+</div>
+</div>
+
+<section style="display:flex;flex-direction:column;gap:8px;flex:1.1;min-height:0">
+<div style="display:flex;align-items:baseline;gap:16px">
+<span class="mono" style="font-family:var(--font-heading);font-size:22px;color:var(--color-accent)">01</span>
+<h2 style="margin:0;font-size:25px;letter-spacing:.03em;text-transform:uppercase">Objectives &amp; key results</h2>
+<span style="font-size:12.5px;color:var(--color-neutral-700)">Owner-set RAG per key result · expand a KR, then ▸ opens its squad/team breakdown</span>
+<button class="btn btn-secondary" onClick="{{ toggleAll }}" style="margin-left:auto;font-family:var(--font-heading);font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px">{{ toggleAllLabel }}</button>
+</div>
+<div style="display:grid;grid-template-columns:{{ objGridCols }};grid-auto-rows:minmax(0,1fr);gap:clamp(10px,1vw,16px);align-items:stretch;flex:1;min-height:0;overflow:hidden">
+<sc-if value="{{ objEmpty }}" hint-placeholder-val="{{ false }}">
+<p style="margin:0;padding:14px 16px;background:var(--color-surface);border:1px solid var(--color-divider);font-size:13px;color:var(--color-neutral-700)">{{ objEmptyMsg }}</p>
+</sc-if>
+<sc-for list="{{ objectives }}" as="o" hint-placeholder-count="3">
+<article class="blueprint" style="display:flex;flex-direction:column;height:100%;min-height:0;overflow:hidden;background:var(--color-surface);border:1px solid var(--color-divider)">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 16px;background:{{ o.rag }};color:{{ o.ragFg }}">
+<span style="font-family:var(--font-heading);font-size:15px;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap">{{ o.status }}</span>
+<span style="font-family:var(--font-heading);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;opacity:.9;white-space:nowrap">{{ o.tag }} · {{ o.lob }}</span>
+</div>
+<div style="padding:12px 16px 12px;display:flex;flex-direction:column;gap:10px;flex:1;min-height:0">
+<h3 style="margin:0;font-size:23px;line-height:1.1;text-wrap:pretty">{{ o.title }}</h3>
+<div style="display:flex;align-items:center;gap:10px;font-size:12px;color:var(--color-neutral-700)">
+<span style="font-family:var(--font-heading);letter-spacing:.05em;text-transform:uppercase">Confidence {{ o.confidence }}%</span>
+<span style="font-family:var(--font-heading);color:{{ o.confTrendColor }}">{{ o.confTrend }}</span>
+<span style="opacity:.5">·</span>
+<span>{{ o.sinceLastReview }}</span>
+</div>
+<div style="display:flex;flex-direction:column;gap:9px;flex:1;min-height:0;overflow-y:auto">
+<sc-for list="{{ o.krs }}" as="k" hint-placeholder-count="2">
+<div style="display:flex;border-left:4px solid {{ k.rag }};background:{{ k.rowBg }};flex:none">
+<div style="flex:1;min-width:0">
+<button onClick="{{ k.toggle }}" style="width:100%;display:flex;align-items:center;gap:10px;padding:8px 12px;border:0;background:transparent;cursor:pointer;text-align:left;font-family:var(--font-body);color:var(--color-text)">
+<span style="flex:1;font-size:14px;line-height:1.3;text-wrap:pretty">{{ k.name }}</span>
+<sc-if value="{{ k.breach }}" hint-placeholder-val="{{ true }}">
+<span style="flex:none;font-family:var(--font-heading);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;padding:3px 8px;background:{{ k.rag }};color:#fff">▲ Breach</span>
+</sc-if>
+<span class="mono" style="flex:none;font-family:var(--font-heading);font-size:26px;line-height:1;color:{{ k.valueColor }}">{{ k.value }}</span>
+<span style="flex:none;width:82px;display:flex;flex-direction:column;gap:1px">
+<span class="mono" style="font-size:11.5px;line-height:1.15;color:var(--color-neutral-700)">{{ k.unit }}</span>
+<span class="mono" style="font-size:11px;line-height:1.15;letter-spacing:.02em;color:var(--color-neutral-600)">{{ k.mini }}</span>
+</span>
+<sc-if value="{{ k.drill }}" hint-placeholder-val="{{ false }}">
+<span onClick="{{ k.openStop }}" style="flex:none;font-family:var(--font-heading);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;padding:3px 7px;border:1px solid var(--color-divider);background:var(--color-surface);color:var(--color-accent-700)">Details</span>
+</sc-if>
+<span style="flex:none;font-family:var(--font-heading);font-size:16px;color:var(--color-accent);width:12px;text-align:center">{{ k.caret }}</span>
+</button>
+<sc-if value="{{ k.expanded }}" hint-placeholder-val="{{ false }}">
+<div style="padding:0 12px 8px;display:flex;flex-direction:column;gap:5px">
+<div style="display:flex;align-items:flex-end;justify-content:space-between;gap:14px">
+<div style="display:flex;flex-direction:column;gap:5px;flex:1">
+<span class="mono" style="font-size:12.5px;color:var(--color-neutral-700)">{{ k.target }}</span>
+<div style="position:relative;height:8px;background:var(--color-neutral-200)">
+<div style="position:absolute;left:0;top:0;bottom:0;width:{{ k.pct }}%;background:{{ k.rag }}"></div>
+<div style="position:absolute;top:-3px;bottom:-3px;width:2px;left:68%;background:var(--color-text)"></div>
+</div>
+<span style="font-size:12.5px;color:var(--color-neutral-800)">{{ k.delta }}</span>
+</div>
+<svg width="104" height="32" viewBox="0 0 104 32" style="display:block;flex:none;overflow:visible">
+<polyline points="{{ k.spark }}" fill="none" stroke="{{ k.rag }}" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"></polyline>
+</svg>
+</div>
+<div style="display:grid;grid-template-columns:64px 1fr;gap:2px 10px;font-size:12px">
+<span style="font-family:var(--font-heading);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-neutral-600)">Owner</span><span>{{ k.owner }}</span>
+<span style="font-family:var(--font-heading);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-neutral-600)">Teams</span><span>{{ k.teams }}</span>
+<span style="font-family:var(--font-heading);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-neutral-600)">Source</span><span>{{ k.source }}</span>
+<span style="font-family:var(--font-heading);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-neutral-600)">Since last</span><span>{{ k.sinceLastReview }}</span>
+</div>
+</div>
+</sc-if>
+</div>
+</div>
+</sc-for>
+</div>
+</div>
+</article>
+</sc-for>
+</div>
+</section>
+
+<div style="display:flex;flex-direction:column;gap:clamp(8px,1.1vh,16px);flex:1;min-height:0">
+<section style="display:flex;flex-direction:column;gap:8px;flex:1;min-height:0">
+<div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px">
+<div style="display:flex;align-items:baseline;gap:16px">
+<span class="mono" style="font-family:var(--font-heading);font-size:22px;color:var(--color-accent)">02</span>
+<h2 style="margin:0;font-size:25px;letter-spacing:.03em;text-transform:uppercase">System health</h2>
+<span style="font-size:12.5px;color:var(--color-neutral-700)">Are we safe? Stop-the-line signals that protect the core while we push for speed</span>
+</div>
+<div class="seg">
+<sc-for list="{{ productScope }}" as="opt" hint-placeholder-count="3">
+<button class="seg-opt" onClick="{{ opt.onClick }}" style="font-family:var(--font-heading);font-size:12px;letter-spacing:.05em;padding:5px 12px;background:{{ opt.bg }};color:{{ opt.fg }}">{{ opt.label }}</button>
+</sc-for>
+</div>
+</div>
+<sc-if value="{{ showDevices }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;align-items:center;gap:10px">
+<span style="font-family:var(--font-heading);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-neutral-600)">Device</span>
+<div class="seg">
+<sc-for list="{{ deviceScope }}" as="opt" hint-placeholder-count="3">
+<button class="seg-opt" onClick="{{ opt.onClick }}" style="font-family:var(--font-heading);font-size:11.5px;letter-spacing:.04em;padding:4px 10px;background:{{ opt.bg }};color:{{ opt.fg }}">{{ opt.label }}</button>
+</sc-for>
+</div>
+</div>
+</sc-if>
+<div style="display:grid;grid-template-columns:repeat({{ prodCols }},1fr);gap:clamp(8px,0.8vw,12px);flex:1;min-height:0;align-content:stretch">
+<sc-if value="{{ prodEmpty }}" hint-placeholder-val="{{ false }}">
+<p style="margin:0;padding:14px 16px;background:var(--color-surface);border:1px solid var(--color-divider);font-size:13px;color:var(--color-neutral-700)">{{ prodEmptyMsg }}</p>
+</sc-if>
+<sc-for list="{{ product }}" as="m" hint-placeholder-count="4">
+<div class="blueprint" style="display:flex;flex-direction:column;gap:5px;padding:8px;background:var(--color-surface);border:1px solid var(--color-divider);border-top:4px solid {{ m.rag }}">
+<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:6px;min-height:28px">
+<span style="font-family:var(--font-heading);font-size:13px;letter-spacing:.04em;text-transform:uppercase;line-height:1.1">{{ m.name }}</span>
+<sc-if value="{{ m.breach }}" hint-placeholder-val="{{ true }}">
+<span style="flex:none;font-family:var(--font-heading);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:2px 5px;background:{{ m.rag }};color:#fff">▲</span>
+</sc-if>
+</div>
+<div style="display:flex;align-items:baseline;gap:4px">
+<span class="mono" style="font-family:var(--font-heading);font-size:24px;line-height:1;color:{{ m.valueColor }}">{{ m.value }}</span>
+<span class="mono" style="font-size:10.5px;color:var(--color-neutral-700)">{{ m.unit }}</span>
+</div>
+<span class="mono" style="font-size:10.5px;color:var(--color-neutral-700)">{{ m.target }}</span>
+<svg width="100%" height="20" viewBox="0 0 100 20" preserveAspectRatio="none" style="display:block">
+<polyline points="{{ m.spark }}" fill="none" stroke="{{ m.rag }}" stroke-width="1.5" vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke-linecap="round"></polyline>
+</svg>
+<span style="font-size:10.5px;line-height:1.25;color:var(--color-neutral-800);text-wrap:pretty">{{ m.delta }}</span>
+<div style="display:flex;align-items:center;justify-content:space-between;gap:6px;margin-top:auto">
+<span class="mono" style="font-family:var(--font-heading);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--color-neutral-600)">{{ m.source }}</span>
+<sc-if value="{{ m.drill }}" hint-placeholder-val="{{ true }}">
+<button class="btn btn-secondary" onClick="{{ m.open }}" style="font-family:var(--font-heading);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:3px 7px">Details →</button>
+</sc-if>
+</div>
+</div>
+</sc-for>
+</div>
+</section>
+
+<section style="display:flex;flex-direction:column;gap:8px;flex:1;min-height:0">
+<div style="display:flex;align-items:baseline;gap:16px">
+<span class="mono" style="font-family:var(--font-heading);font-size:22px;color:var(--color-accent)">03</span>
+<h2 style="margin:0;font-size:25px;letter-spacing:.03em;text-transform:uppercase">Flow &amp; ROI</h2>
+<span style="font-size:12.5px;color:var(--color-neutral-700)">Are we improving? Whether investment is turning into faster delivery, better focus and measurable return</span>
+</div>
+<div style="display:grid;grid-template-columns:repeat({{ orgCols }},1fr);gap:clamp(8px,0.8vw,12px);flex:1;min-height:0;align-content:stretch">
+<sc-if value="{{ orgEmpty }}" hint-placeholder-val="{{ false }}">
+<p style="margin:0;padding:14px 16px;background:var(--color-surface);border:1px solid var(--color-divider);font-size:13px;color:var(--color-neutral-700)">{{ orgEmptyMsg }}</p>
+</sc-if>
+<sc-for list="{{ org }}" as="m" hint-placeholder-count="5">
+<div class="blueprint" style="display:flex;flex-direction:column;gap:5px;padding:8px;background:var(--color-surface);border:1px solid var(--color-divider);border-top:4px solid {{ m.rag }}">
+<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:6px;min-height:28px">
+<span style="font-family:var(--font-heading);font-size:13px;letter-spacing:.04em;text-transform:uppercase;line-height:1.1">{{ m.name }}</span>
+<sc-if value="{{ m.breach }}" hint-placeholder-val="{{ true }}">
+<span style="flex:none;font-family:var(--font-heading);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:2px 5px;background:{{ m.rag }};color:#fff">▲</span>
+</sc-if>
+</div>
+<div style="display:flex;align-items:baseline;gap:4px">
+<span class="mono" style="font-family:var(--font-heading);font-size:24px;line-height:1;color:{{ m.valueColor }}">{{ m.value }}</span>
+<span class="mono" style="font-size:10.5px;color:var(--color-neutral-700)">{{ m.unit }}</span>
+</div>
+<span class="mono" style="font-size:10.5px;color:var(--color-neutral-700)">{{ m.target }}</span>
+<svg width="100%" height="20" viewBox="0 0 100 20" preserveAspectRatio="none" style="display:block">
+<polyline points="{{ m.spark }}" fill="none" stroke="{{ m.rag }}" stroke-width="1.5" vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke-linecap="round"></polyline>
+</svg>
+<span style="font-size:10.5px;line-height:1.25;color:var(--color-neutral-800);text-wrap:pretty">{{ m.sub }}</span>
+<div style="display:flex;align-items:center;justify-content:space-between;gap:6px;margin-top:auto">
+<span class="mono" style="font-family:var(--font-heading);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--color-neutral-600)">{{ m.source }}</span>
+<sc-if value="{{ m.drill }}" hint-placeholder-val="{{ true }}">
+<button class="btn btn-secondary" onClick="{{ m.open }}" style="font-family:var(--font-heading);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:3px 7px">Details →</button>
+</sc-if>
+</div>
+</div>
+</sc-for>
+</div>
+</section>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isDetail }}" hint-placeholder-val="{{ false }}">
+<div style="height:100%;padding:clamp(16px,2vh,24px) clamp(20px,2vw,40px);display:flex;flex-direction:column;gap:clamp(12px,1.6vh,20px);overflow:hidden">
+<div style="display:flex;align-items:flex-end;justify-content:space-between;gap:32px">
+<div style="display:flex;flex-direction:column;gap:6px">
+<button class="btn btn-ghost" onClick="{{ home }}" style="align-self:flex-start;font-family:var(--font-heading);font-size:13px;letter-spacing:.12em;text-transform:uppercase">← Q3 FY26 OKRs &amp; health</button>
+<div style="font-family:var(--font-heading);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--color-accent-700)">Behind the metric</div>
+<h1 style="margin:0;font-size:42px">{{ detail.title }}</h1>
+</div>
+<div style="display:flex;align-items:flex-end;gap:32px">
+<div style="display:flex;flex-direction:column;gap:3px;align-items:flex-end">
+<span style="font-family:var(--font-heading);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--color-neutral-600)">Current</span>
+<span class="mono" style="font-family:var(--font-heading);font-size:40px;line-height:1;color:{{ detail.color }}">{{ detail.headline }}</span>
+<span style="font-size:13px;color:var(--color-neutral-700)">{{ detail.headlineNote }}</span>
+</div>
+<div class="seg">
+<button class="seg-opt" onClick="{{ set30 }}" style="font-family:var(--font-heading);font-size:14px;letter-spacing:.06em;padding:6px 16px;background:{{ bg30 }};color:{{ fg30 }}">30 DAYS</button>
+<button class="seg-opt" onClick="{{ set90 }}" style="font-family:var(--font-heading);font-size:14px;letter-spacing:.06em;padding:6px 16px;background:{{ bg90 }};color:{{ fg90 }}">90 DAYS</button>
+</div>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;align-content:start;align-items:start;flex:1;min-height:0">
+<sc-for list="{{ detail.blocks }}" as="b" hint-placeholder-count="4">
+<div class="blueprint" style="padding:14px 18px;background:var(--color-surface);border:1px solid var(--color-divider);overflow:hidden">
+<div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:8px">
+<h2 style="margin:0;font-size:22px;letter-spacing:.04em;text-transform:uppercase">{{ b.title }}</h2>
+<span class="tag tag-accent" style="font-family:var(--font-heading);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase">{{ b.source }}</span>
+</div>
+<table class="table" style="width:100%">
+<tbody>
+<sc-for list="{{ b.rows }}" as="r" hint-placeholder-count="3">
+<tr>
+<td style="padding:7px 4px">
+<div style="display:flex;flex-direction:column;gap:1px">
+<span style="font-family:var(--font-heading);font-size:16px;letter-spacing:.03em;text-transform:uppercase">{{ r.name }}</span>
+<span style="font-size:12.5px;color:var(--color-neutral-700);text-wrap:pretty">{{ r.sub }}</span>
+</div>
+</td>
+<td class="mono" style="width:86px;text-align:right;font-size:12.5px;color:var(--color-neutral-700)">{{ r.trend }}</td>
+<td style="width:112px;text-align:right;padding-right:4px">
+<span class="mono" style="font-family:var(--font-heading);font-size:26px;line-height:1;padding:2px 7px;background:{{ r.bg }};color:{{ r.fg }}">{{ r.value }}</span>
+</td>
+</tr>
+</sc-for>
+</tbody>
+</table>
+</div>
+</sc-for>
+</div>
+<p style="margin:0;max-width:1400px;font-size:14.5px;line-height:1.5;color:var(--color-neutral-800);text-wrap:pretty">{{ detail.note }}</p>
+</div>
+</sc-if>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const RED = 'oklch(0.52 0.18 26)', AMBER = 'oklch(0.66 0.14 68)', GREEN = 'oklch(0.52 0.11 152)';
+const rag = t => t === 'g' ? GREEN : t === 'a' ? AMBER : RED;
+const spark = (vals, w, h) => {
+  const min = Math.min(...vals), max = Math.max(...vals), span = (max - min) || 1;
+  return vals.map((v, i) => `${(i / (vals.length - 1) * w).toFixed(1)},${(h - (v - min) / span * (h - 5) - 2.5).toFixed(1)}`).join(' ');
+};
+const ACC = 'var(--color-accent)', ON_ACC = '#fff', OFF = 'transparent', TXT = 'var(--color-text)';
+const seg = (opts, current, set) => opts.map(([id, label]) => ({
+  label, onClick: () => set(id), bg: id === current ? ACC : OFF, fg: id === current ? ON_ACC : TXT
+}));
+
+class Component extends DCLogic {
+  state = { range: '30d', page: 'home', open: {},
+    scopeBU: 'all', scopeGroup: 'all', product: 'all', device: 'All devices' };
+
+  componentDidMount() {
+    this._fit = () => {
+      const s = Math.min(window.innerWidth / 1728, window.innerHeight / 1117);
+      this.setState({ fitScale: Math.round(s * 1000) / 1000 });
+    };
+    this._fit();
+    window.addEventListener('resize', this._fit);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this._fit); }
+
+  renderVals() {
+    const r30 = this.state.range === '30d';
+    const pick = p => r30 ? p[0] : p[1];
+    const goto = k => () => this.setState({ page: k });
+    const toggle = id => () => this.setState(s => ({ open: { ...s.open, [id]: !s.open[id] } }));
+
+    const objectives = [
+      { tag: 'Objective 01', lob: 'Energy', bu: ['ped', 'mktg'], t: 'a', confidence: 72, confidencePrev: 68,
+        title: 'Break into a new partner market with a partner-branded thermostat',
+        krs: [
+          { id: 'o1k1', group: ['cdm', 'firmware', 'hw'], drill: 'bu_o1k1', drillLabel: 'By region & squad', name: 'Activation rate on partner-branded units', unit: '%', v: ['89.4', '87.9'], target: 'Target ≥ 90% · owner confidence 85%', t: 'g', pct: 86,
+            delta: pick(['+1.5pt over 30 days, on pace', '+2.1pt over 90 days, on pace']), source: 'Product analytics (Amplitude)',
+            owner: 'D. Okafor, Dir. Partner Platform', teams: 'Partner Platform · Firmware Integration',
+            sinceLastReview: 'RAG unchanged; value up 1.5pt', s: pick([[84.3, 85, 85.6, 86.4, 87.1, 87.5, 87.9], [78, 79.5, 81, 80.4, 83, 85.2, 86.4]]) },
+          { id: 'o1k2', group: ['cdm', 'firmware', 'hw'], drill: 'bu_o1k2', drillLabel: 'By region & squad', name: 'Support contacts per 1,000 units, first 60 days', unit: '/1k units', v: ['14.1', '16.2'], target: 'Target ≤ 12.0 · owner confidence 55%', t: 'r', breach: true, pct: 52,
+            delta: pick(['−2.1 over 30 days, still 18% over target', '−4.6 over 90 days, still 35% over target']), source: 'Zendesk',
+            owner: 'L. Haddad, Sr. Mgr. Installer Experience', owner2: 'D. Okafor, Dir. Partner Platform',
+            teams: 'Installer Experience · Support Eng', sinceLastReview: 'Still red, but improving — was 18.9',
+            s: pick([[20.1, 19.6, 19, 18.4, 18, 17.6, 17.2], [26, 25.1, 23.4, 22, 21.2, 20.1, 18.7]]) }
+        ] },
+      { tag: 'Objective 02', lob: 'Energy', bu: 'ped', t: 'g', confidence: 80, confidencePrev: 75,
+        title: 'Deliver next-gen thermostat software with greater efficiency and faster delivery',
+        krs: [
+          { id: 'o2k1', group: ['cdm', 'firmware'], drill: 'bu_o2k1', drillLabel: 'By pillar & squad', name: 'Walking skeleton at 20M connections, p95 ≤ 500ms', unit: pick(['M @ 540ms', 'M @ 610ms']), v: ['17.1', '12.4'], target: 'Target 20M @ 500ms · owner confidence 85%', t: 'g', pct: 86,
+            delta: pick(['best run in window, p95 −70ms', 'best run in window, p95 −190ms']), source: 'Load lab',
+            owner: 'P. Nakamura, Dir. Connectivity', teams: 'Connectivity · Core Services · SRE',
+            sinceLastReview: 'Moved amber → green this review', s: pick([[15.2, 15.8, 16.1, 16.5, 16.8, 17, 17.1], [8.6, 10.1, 11.6, 13.2, 14.6, 16, 17.1]]) },
+          { id: 'o2k2', group: ['cdm', 'firmware'], drill: 'bu_o2k2', drillLabel: 'By squad', name: 'Zero unknown use cases at cutover', unit: 'open', v: ['3', '3'], target: '214 catalogued · target 0 unknown', t: 'g', pct: 94,
+            delta: pick(['11 closed over 30 days', '39 closed over 90 days']), source: 'Cutover register (Jira)',
+            owner: 'J. Ferreira, Sr. Mgr. Migration', teams: 'Migration · Thermostat Apps · Support Eng',
+            sinceLastReview: 'RAG unchanged; 4 fewer unknowns', s: pick([[8, 7, 6, 5, 4, 4, 3], [22, 18, 14, 10, 7, 5, 3]]) }
+        ] },
+      { tag: 'Objective 03', lob: 'Security', bu: ['ped', 'cs'], t: 'g', confidence: 78, confidencePrev: 72,
+        title: 'Better customer satisfaction and delight in smart security',
+        krs: [
+          { id: 'o3k1', group: ['cdm', 'firmware', 'hw'], drill: 'bu_o3k1', drillLabel: 'By device & squad', name: 'False alarm rate down to target', unit: '% / wk', v: ['1.7', '2.1'], target: 'Target ≤ 1.5% · owner confidence 75%', t: 'a', pct: 82,
+            delta: pick(['−0.2pt over 30 days', '−0.9pt over 90 days']), source: 'Device telemetry',
+            owner: 'A. Whitfield, Dir. Security Experience', owner2: 'R. Kade, Dir. Data Science',
+            teams: 'Security Experience · Data Science', sinceLastReview: 'RAG unchanged; down 0.2pt',
+            s: pick([[2.1, 2, 1.9, 1.85, 1.8, 1.75, 1.7], [2.9, 2.7, 2.5, 2.4, 2.3, 2.2, 2.1]]) },
+          { id: 'o3k2', group: ['cdm', 'firmware'], drill: 'bu_o3k2', drillLabel: 'By plan & squad', name: 'Paid security subscriptions', unit: 'subs', v: ['54,180', '54,180'], target: 'Target 60,000 by 30 Sep · confidence 88%', t: 'g', pct: 90,
+            delta: pick(['+4,940 over 30 days, ahead of pace', '+13,180 over 90 days, ahead of pace']), source: 'Billing',
+            owner: 'M. Sandoval, Sr. Mgr. Subscriptions', teams: 'Subscriptions · Growth Eng',
+            sinceLastReview: 'RAG unchanged; still ahead of pace', s: pick([[49240, 50300, 51400, 52400, 53200, 53800, 54180], [41000, 43400, 45800, 48200, 50400, 52400, 54180]]) },
+          { id: 'o3k3', group: ['cdm', 'firmware', 'hw'], drill: 'bu_o3k3', drillLabel: 'By device & squad', name: 'Missed genuine alarms (false dismissals)', unit: 'events', v: ['0', '1'], target: 'Target = 0 · owner confidence 90%', t: 'g', pct: 100,
+            delta: pick(['0 for 30 straight days', '1 isolated case, resolved same day']), source: 'Device telemetry + support escalations',
+            owner: 'A. Whitfield, Dir. Security Experience', teams: 'Security Experience · Data Science',
+            sinceLastReview: 'RAG unchanged; no new cases', s: pick([[1, 0, 1, 0, 0, 0, 0], [2, 1, 1, 1, 0, 1, 1]]) }
+        ] }
+    ];
+
+    const effGroup = this.state.scopeBU === 'ped' ? this.state.scopeGroup : 'all';
+    const buOK = this.state.scopeBU === 'all' || this.state.scopeBU === objectives[0].bu && this.state.scopeBU === 'ped';
+    const objBu = o => Array.isArray(o.bu) ? o.bu : [o.bu];
+    const objectivesFiltered = objectives.filter(o => this.state.scopeBU === 'all' || objBu(o).includes(this.state.scopeBU)).map(o => {
+      const krs = o.krs.filter(k => effGroup === 'all' || k.group.includes(effGroup));
+      return { ...o, krs };
+    }).filter(o => o.krs.length > 0).map(o => ({ ...o, rag: rag(o.t), ragFg: '#fff', status: o.t === 'g' ? 'On track' : o.t === 'a' ? 'At risk' : 'Breached',
+      confTrend: o.confidence > o.confidencePrev ? '▲' : o.confidence < o.confidencePrev ? '▼' : 'flat',
+      confTrendColor: o.confidence > o.confidencePrev ? GREEN : o.confidence < o.confidencePrev ? RED : 'var(--color-neutral-600)',
+      sinceLastReview: 'Since last review: ' + o.krs.filter(k => k.sinceLastReview && k.sinceLastReview.includes('→')).length + ' KR moved, ' + o.krs.length + ' reviewed',
+      krs: o.krs.map(k => {
+        const expanded = !!this.state.open[k.id];
+        return { ...k, rag: rag(k.t), value: pick(k.v), spark: spark(k.s, 104, 32), expanded, caret: expanded ? '−' : '+',
+          mini: 'vs ' + k.target.split('·')[0].replace('Target ', '').trim(),
+          owner: k.owner2 ? k.owner + ' + ' + k.owner2 : k.owner,
+          toggle: toggle(k.id), open: k.drill ? goto(k.drill) : null,
+          openStop: k.drill ? (e => { e.stopPropagation(); goto(k.drill)(); }) : null,
+          valueColor: k.t === 'r' ? RED : 'var(--color-text)',
+          rowBg: k.t === 'r' ? 'color-mix(in srgb, ' + RED + ' 9%, transparent)' : 'transparent' };
+      }) }));
+
+    const GROUP_LABEL = { cdm: 'Cloud, Data & Mobile', firmware: 'Firmware', hw: 'Hardware' };
+    const buScope = seg([['all', 'ALL COMPANY'], ['ped', 'PED'], ['mktg', 'MARKETING'], ['cs', 'CUSTOMER SERVICE']], this.state.scopeBU,
+      id => this.setState({ scopeBU: id, scopeGroup: id === 'ped' ? this.state.scopeGroup : 'all' }));
+    const groupScope = seg([['all', 'ALL GROUPS'], ['cdm', GROUP_LABEL.cdm.toUpperCase()], ['firmware', GROUP_LABEL.firmware.toUpperCase()], ['hw', GROUP_LABEL.hw.toUpperCase()]],
+      this.state.scopeGroup, id => this.setState({ scopeGroup: id }));
+
+    const productScope = seg([['all', 'ALL PRODUCTS'], ['energy', 'ENERGY'], ['security', 'SMART SECURITY']], this.state.product,
+      id => this.setState({ product: id, device: 'All devices' }));
+    const DEVICES = { energy: ['All devices', 'Smart Thermostat', 'Partner-Branded Thermostat'], security: ['All devices', 'Indoor Cam', 'Sensor Kit', 'Video Doorbell'] };
+    const deviceScope = this.state.product !== 'all' ? seg(DEVICES[this.state.product].map(d => [d, d.toUpperCase()]), this.state.device, id => this.setState({ device: id })) : [];
+
+    const prodTag = this.state.product === 'all' ? 'Company-wide' : this.state.product === 'energy' ? 'Energy' : 'Smart Security';
+    const COST = { all: ['412', '428'], energy: ['396', '410'], security: ['447', '462'] };
+
+    // scope shifts the numbers, then RAG is derived from value vs. target so the two never disagree
+    const GROUP_Q = { all: 0, cdm: 0.06, firmware: -0.11, hw: -0.06 };
+    const BU_Q = { all: 0, ped: 0, mktg: -0.02, cs: -0.05 };
+    const q = GROUP_Q[effGroup] + BU_Q[this.state.scopeBU];
+    const num = str => { const m = String(str).match(/([\d,.]+)/); return m ? parseFloat(m[1].replace(/,/g, '')) : null; };
+    const shift = (str, higherIsBetter) => {
+      const m = String(str).match(/^(\D*)([\d,.]+)(.*)$/);
+      if (!m || !q) return str;
+      const raw = m[2].replace(/,/g, ''), dec = (raw.split('.')[1] || '').length;
+      const n = parseFloat(raw) * (1 + (higherIsBetter ? q : -q));
+      return m[1] + (dec ? n.toFixed(dec) : Math.round(n).toLocaleString('en-US')) + m[3];
+    };
+    const scoped = m => {
+      const higherIsBetter = /≥|Target 4\.5|Target 99/.test(m.target);
+      const value = shift(pick(m.v), higherIsBetter);
+      const tgt = num(m.target), v = num(value);
+      let t = m.t;
+      if (tgt !== null && v !== null) {
+        const ratio = higherIsBetter ? v / tgt : tgt / v;
+        t = ratio >= 1 ? 'g' : ratio >= 0.94 ? 'a' : 'r';
+      }
+      return { ...m, t, rag: rag(t), value, spark: spark(m.s, 100, 20),
+        valueColor: t === 'r' ? RED : 'var(--color-text)', breach: t === 'r',
+        open: m.drill ? goto(m.drill) : null };
+    };
+    const buFilter = list => list.filter(m => this.state.scopeBU === 'all' || m.bu.includes(this.state.scopeBU));
+    const product = buFilter([
+      { name: 'Reliability score', unit: '/100', v: ['96.4', '95.8'], target: 'Target ≥ 95.0', t: 'g', tByScope: { cs: 'a', firmware: 'a' }, source: 'SRE telemetry', drill: 'rel', bu: ['ped', 'cs'],
+        delta: 'Customer-facing health of services and device experience', s: pick([[95.8, 95.9, 96, 96.1, 96.2, 96.3, 96.4], [95.1, 95.3, 95.4, 95.5, 95.6, 95.7, 95.8]]) },
+      { name: 'Service health', unit: '/100', v: ['87', '84'], target: 'Target ≥ 85', t: 'g', tByScope: { firmware: 'a', hw: 'a' }, source: 'OpsLevel', drill: 'svc', bu: ['ped'],
+        delta: 'Service quality and operational maturity checks', s: pick([[84, 85, 85, 86, 86, 87, 87], [80, 81, 82, 83, 83, 84, 84]]) },
+      { name: 'Data quality', unit: '%', v: ['93.6', '92.4'], target: 'Target ≥ 95.0', t: 'a', tByScope: { cdm: 'g', mktg: 'a' }, source: 'Data platform', drill: 'dq', bu: ['ped', 'mktg'],
+        delta: 'Completeness, correctness and timeliness of product data', s: pick([[92.4, 92.7, 93, 93.2, 93.4, 93.5, 93.6], [90.8, 91.2, 91.6, 91.9, 92.1, 92.3, 92.4]]) },
+      { name: 'Cost per 1,000 thermostats', unit: '$ / mo', v: COST[this.state.product], target: 'Target ≤ $420', t: 'g', tByScope: { mktg: 'a' }, source: 'Cloud finops', drill: 'cost', bu: ['ped', 'mktg'],
+        delta: this.state.device === 'All devices' ? 'Operating cost to serve installed devices' : 'Filtered to ' + this.state.device, s: pick([[428, 424, 421, 418, 415, 413, 412], [446, 442, 438, 435, 432, 430, 428]]) },
+      { name: 'Defect rate', unit: '/ 1k changes', v: ['4.1', '4.6'], target: 'Target ≤ 6.0', t: 'g', tByScope: { firmware: 'a' }, source: 'Jira + GitHub', drill: 'defect', bu: ['ped', 'cs'],
+        delta: 'Customer-impacting bugs and escaped defects after done', s: pick([[4.6, 4.5, 4.4, 4.3, 4.2, 4.1, 4.1], [5.3, 5.2, 5, 4.9, 4.8, 4.7, 4.6]]) }
+    ].map(m => scoped(m)));
+
+    const org = this.state.scopeBU === 'mktg' || this.state.scopeBU === 'cs' ? [] : [
+      { name: 'DX speed of true throughput', unit: 'PRs / eng / wk', v: ['4.6', '4.3'], target: 'Target ≥ 4.5', t: 'g', tByScope: { firmware: 'a', hw: 'a' }, source: 'DX + GitHub', drill: 'thr',
+        sub: 'Rate of meaningful, reviewed change reaching production', s: pick([[4.3, 4.4, 4.4, 4.5, 4.5, 4.6, 4.6], [3.8, 3.9, 4, 4.1, 4.2, 4.2, 4.3]]) },
+      { name: 'Cycle time', unit: 'days', v: ['2.2', '2.6'], target: 'Target ≤ 2.5', t: 'g', tByScope: { firmware: 'a' }, source: 'GitHub + Jira', drill: 'cyc',
+        sub: 'Start of work to delivered — how much waiting we removed', s: pick([[2.6, 2.5, 2.5, 2.4, 2.3, 2.3, 2.2], [3.2, 3.1, 3, 2.9, 2.8, 2.7, 2.6]]) },
+      { name: 'Innovation ratio', unit: '% capacity', v: ['54', '51'], target: 'Target ≥ 50%', t: 'g', tByScope: { firmware: 'a' }, source: 'Jira + DX', drill: 'innov',
+        sub: 'Capacity on new value vs. rework, waiting and unmanaged KTLO', s: pick([[51, 51, 52, 52, 53, 53, 54], [46, 47, 48, 49, 50, 50, 51]]) },
+      { name: 'AI impact', unit: '% lift', v: ['16', '13'], target: 'Target ≥ 15%', t: 'g', tByScope: { firmware: 'a', hw: 'a' }, source: 'DX + GitHub', drill: 'aiimp',
+        sub: 'Measured lift on delivery, quality and support outcomes', s: pick([[13, 14, 14, 15, 15, 16, 16], [9, 10, 11, 12, 12, 13, 13]]) },
+      { name: 'AI cost', unit: '$K / mo', v: ['86', '78'], target: 'Target ≤ $100K', t: 'g', source: 'Finance + vendor', drill: 'aicost',
+        sub: 'Direct spend on AI tools and usage across the group', s: pick([[78, 80, 81, 83, 84, 85, 86], [68, 70, 72, 74, 75, 77, 78]]) }
+    ].map(m => scoped(m));
+
+    const R = (name, sub, trend, value, t) => ({ name, sub, trend, value, bg: t === 'r' ? RED : t === 'a' ? 'color-mix(in srgb, ' + AMBER + ' 20%, transparent)' : 'transparent', fg: t === 'r' ? '#fff' : 'var(--color-text)' });
+    const pages = {
+      bu_o1k1: { title: 'Activation rate — by region & squad', headline: pick(['89.4%', '87.9%']), headlineNote: 'owner: D. Okafor, Dir. Partner Platform', color: GREEN,
+        note: 'Activation blends two regional rollouts on different installer workflows. North America is ahead of target; EMEA — a newer, partner-only market — is the drag pulling the blended rate down.',
+        blocks: [
+          { title: 'By region', source: 'Product analytics', rows: [
+            R('North America', 'Direct + partner installs', '▲ +2.1pt', pick(['91.4%', '90.1%']), 'g'),
+            R('EMEA', 'Partner-only installs, newer market', '▲ +0.8pt', pick(['81.2%', '79.6%']), 'r')] },
+          { title: 'By squad', source: 'Product analytics + Jira', rows: [
+            R('Partner Platform', 'Activation flow & partner app', '▲', pick(['91.4%', '90.1%']), 'g'),
+            R('Installer Experience', 'Install flow & onboarding', '▲', pick(['81.2%', '79.6%']), 'r'),
+            R('Firmware Integration', 'Device pairing & provisioning', 'flat', pick(['88.6%', '87.9%']), 'a')] }] },
+      bu_o2k1: { title: 'Walking skeleton — by pillar & squad', headline: pick(['17.1M @ 540ms', '12.4M @ 610ms']), headlineNote: 'owner: P. Nakamura, Dir. Connectivity', color: GREEN,
+        note: 'Connection capacity is split across two pillars that must scale together — cloud ingest and the mobile/data path — with SRE certifying each load-test milestone.',
+        blocks: [
+          { title: 'By platform pillar', source: 'Load lab', rows: [
+            R('Cloud ingest & routing', 'Connection broker + fanout', '▲', pick(['14.1M', '9.8M']), 'g'),
+            R('Mobile & data path', 'App-side session handling', '▲', pick(['11.2M', '7.9M']), 'a')] },
+          { title: 'By squad', source: 'Load lab + Jira', rows: [
+            R('Connectivity', 'Broker + routing capacity', '▲', pick(['12.9M', '9.1M']), 'g'),
+            R('Core Services', 'Shared platform services', '▲', pick(['11.8M', '8.0M']), 'a'),
+            R('SRE', 'Load test certification', 'flat', pick(['3 runs', '9 runs']), 'g')] }] },
+      bu_o1k2: { title: 'Support contacts — by region & squad', headline: pick(['14.1 /1k units', '16.2 /1k units']), headlineNote: 'owner: L. Haddad, Sr. Mgr. Installer Experience', color: RED,
+        note: 'Contact volume is concentrated in EMEA, where the partner-only install flow is newer and less self-serve than the North America direct flow.',
+        blocks: [
+          { title: 'By region', source: 'Zendesk', rows: [
+            R('North America', 'Direct + partner installs', '▼ −1.1', pick(['12.1', '13.4']), 'g'),
+            R('EMEA', 'Partner-only installs, newer market', '▼ −1.6', pick(['24.8', '26.9']), 'r')] },
+          { title: 'By squad', source: 'Zendesk + Jira', rows: [
+            R('Installer Experience', 'Install flow & onboarding', '▼', pick(['13.9', '15.1']), 'r'),
+            R('Support Eng', 'Ticket triage & tooling', '▼', pick(['2.6', '2.9']), 'a'),
+            R('Firmware Integration', 'Device pairing & provisioning', 'flat', pick(['1.2', '1.3']), 'g')] }] },
+      bu_o2k2: { title: 'Cutover unknowns — by squad', headline: pick(['3 open', '3 open']), headlineNote: 'owner: J. Ferreira, Sr. Mgr. Migration', color: GREEN,
+        note: 'The remaining unknowns are concentrated in Migration; Thermostat Apps and Support Eng have cleared their share.',
+        blocks: [
+          { title: 'By squad', source: 'Cutover register (Jira)', rows: [
+            R('Migration', 'Legacy protocol edge cases', '▼ −3', '4', 'a'),
+            R('Thermostat Apps', 'App-side compatibility', '▼ −2', '2', 'g'),
+            R('Support Eng', 'Field-reported edge cases', 'flat', '1', 'g')] }] },
+      bu_o3k1: { title: 'False alarm rate — by device & squad', headline: pick(['1.7% / wk', '2.1% / wk']), headlineNote: 'owner: A. Whitfield, Dir. Security Experience', color: AMBER,
+        note: 'Sensor Kit carries most of the false-alarm volume; the v3 detection model is rolled out to Indoor Cam only so far.',
+        blocks: [
+          { title: 'By device', source: 'Device telemetry', rows: [
+            R('Indoor Cam', 'v3 detection model live', '▼ −0.5pt', pick(['1.8%', '2.1%']), 'g'),
+            R('Sensor Kit', 'v2 model, v3 rollout pending', '▲ +0.1pt', pick(['3.1%', '3.6%']), 'r')] },
+          { title: 'By squad', source: 'Device telemetry + Jira', rows: [
+            R('Security Experience', 'Detection tuning & rollout', '▼', pick(['2.1%', '2.4%']), 'a'),
+            R('Data Science', 'Model training & validation', '▼', pick(['2.4%', '2.9%']), 'a')] }] },
+      bu_o3k2: { title: 'Paid subscriptions — by plan & squad', headline: pick(['54,180 subs', '54,180 subs']), headlineNote: 'owner: M. Sandoval, Sr. Mgr. Subscriptions', color: GREEN,
+        note: 'Premium plan attach rate is climbing faster than Standard, ahead of the pace needed to hit 60,000 by quarter close.',
+        blocks: [
+          { title: 'By plan', source: 'Billing', rows: [
+            R('Standard', 'Base monitoring plan', '▲ +2,940', '31,400', 'g'),
+            R('Premium', 'Video + extended history', '▲ +1,240', '15,920', 'g')] },
+          { title: 'By squad', source: 'Billing + DX', rows: [
+            R('Subscriptions', 'Billing & plan management', '▲', '47,320', 'g'),
+            R('Growth Eng', 'Upsell flows & experiments', '▲', '+4,180', 'g')] }] },
+      bu_o3k3: { title: 'Missed genuine alarms — by device & squad', headline: pick(['0 events', '1 event']), headlineNote: 'owner: A. Whitfield, Dir. Security Experience', color: GREEN,
+        note: 'The single 90-day case was on Sensor Kit under the older detection model; Indoor Cam has had zero since the v3 rollout.',
+        blocks: [
+          { title: 'By device', source: 'Device telemetry + support', rows: [
+            R('Indoor Cam', 'v3 detection model live', 'flat', '0', 'g'),
+            R('Sensor Kit', 'v2 model, v3 rollout pending', pick(['flat', '▼ −1']), pick(['0', '1']), 'a')] },
+          { title: 'By squad', source: 'Device telemetry', rows: [
+            R('Security Experience', 'Detection tuning & rollout', 'flat', pick(['0', '1']), 'g'),
+            R('Data Science', 'Model training & validation', 'flat', '0', 'g')] }] },
+      rel: { title: 'Reliability score', headline: pick(['96.4 / 100', '95.8 / 100']), headlineNote: 'target ≥ 95.0 · owner: SRE leadership', color: GREEN,
+        note: 'The customer-facing health of our services and device experience — the signal that protects trust while we push throughput up. It is also our proxy for incident load: connection success, error rate, latency SLOs and Sev1–2 count are inputs here rather than separate scorecard lines.',
+        blocks: [
+          { title: 'What the score is made of', source: 'SRE telemetry', rows: [
+            R('Connection success rate', 'Device connects on first attempt', 'flat', '99.96%', 'g'),
+            R('Internal API error rate', 'Errors across service mesh', '▲ +0.06pt', '0.42%', 'a'),
+            R('Latency SLO attainment', 'p95 inside SLO', '▼ −1.2pt', '96.4%', 'a'),
+            R('Sev1–2 incidents', pick(['Trailing 30 days · target ≤ 4', 'Trailing 90 days · target ≤ 12']), '▲', pick(['6', '19']), 'r')] },
+          { title: 'Error budget', source: 'SRE telemetry', rows: [
+            R('Burn rate in window', 'Share of quarterly budget used', pick(['▲ +4pt', '▲ +9pt']), pick(['22%', '48%']), 'a'),
+            R('Services over budget', 'Of 41 tracked services', 'flat', '2', 'a'),
+            R('MTTR, Sev1–2', 'Target ≤ 45 min', pick(['▲ +9m', '▲ +5m']), pick(['71m', '66m']), 'r')] },
+          { title: 'By service', source: 'SRE telemetry', rows: [
+            R('Connection broker', 'Device connectivity path', 'flat', '96.1', 'g'),
+            R('Alarm pipeline', 'Detection & notification', '▲', '94.8', 'g'),
+            R('Subscription billing', 'Payments and renewals', '▼', '91.4', 'a')] },
+          { title: 'By device experience', source: 'Device telemetry', rows: [
+            R('Smart Thermostat', 'Direct-sold fleet', 'flat', '96.8', 'g'),
+            R('Partner-Branded Thermostat', 'Partner-sold fleet', '▼', '92.1', 'a'),
+            R('Indoor Cam', 'Security fleet', '▲', '94.6', 'g')] }] },
+      svc: { title: 'Service health', headline: pick(['87 / 100', '84 / 100']), headlineNote: 'OpsLevel maturity · owner: Platform Engineering', color: GREEN,
+        note: 'OpsLevel scores every service against the same checklist — ownership, runbooks, observability, dependency hygiene and on-call readiness. Above target overall; the remaining gap sits in a handful of services with a stale runbook.',
+        blocks: [
+          { title: 'Maturity checks', source: 'OpsLevel', rows: [
+            R('Ownership recorded', '38 of 41 services with a named owner', '▲ +2', '93%', 'g'),
+            R('Runbook current', 'Reviewed in the last 90 days', '▼ −4pt', '68%', 'r'),
+            R('Observability baseline', 'Logs, metrics, traces wired', '▲ +3pt', '84%', 'a')] },
+          { title: 'Operational quality', source: 'OpsLevel', rows: [
+            R('Services in tier 1', 'Customer-path services', 'flat', '12', 'g'),
+            R('Failing at least one check', 'Of 41 tracked services', '▼ −3', '9', 'a'),
+            R('Dependency hygiene', 'No end-of-life dependencies', '▲ +5pt', '77%', 'a')] },
+          { title: 'By squad', source: 'OpsLevel', rows: [
+            R('Cloud, Data & Mobile', '18 services', '▲', '86', 'g'),
+            R('Firmware', '9 services', 'flat', '80', 'a'),
+            R('Hardware', '6 services', '▼', '73', 'r')] }] },
+      dq: { title: 'Data quality', headline: pick(['93.6%', '92.4%']), headlineNote: 'target ≥ 95% · owner: Data Platform', color: AMBER,
+        note: 'Composite of completeness, correctness and timeliness across the product and operational datasets leadership decisions rely on. Timeliness is the weak dimension — two nightly pipelines have been landing late all quarter, which is why install funnel numbers are read a day behind.',
+        blocks: [
+          { title: 'The three dimensions', source: 'Data platform', rows: [
+            R('Completeness', 'Expected records present', '▲ +1.1pt', '96.8%', 'g'),
+            R('Correctness', 'Passing validation rules', 'flat', '94.2%', 'a'),
+            R('Timeliness', 'Landed inside SLA window', '▼ −3.4pt', '83.1%', 'r')] },
+          { title: 'Pipeline reliability', source: 'Data platform', rows: [
+            R('Pipelines late in window', 'Of 62 scheduled pipelines', '▲ +2', '7', 'r'),
+            R('Failed validation runs', pick(['Trailing 30 days', 'Trailing 90 days']), '▼ −6', pick(['21', '68']), 'a'),
+            R('Mean time to fix a break', 'Data on-call rota', '▼ −5h', '14h', 'a')] },
+          { title: 'By dataset', source: 'Data platform', rows: [
+            R('Device telemetry', 'Highest volume dataset', 'flat', '97.1%', 'g'),
+            R('Install funnel', 'Feeds activation reporting', '▼', '86.4%', 'r'),
+            R('Support contacts', 'Feeds the support KR', '▲', '92.8%', 'a'),
+            R('Subscription billing', 'Feeds revenue reporting', 'flat', '95.6%', 'g')] }] },
+      cost: { title: 'Cost per 1,000 thermostats', headline: '$' + pick([COST[this.state.product][0], COST[this.state.product][1]]) + ' / mo', headlineNote: 'target ≤ $420 · ' + prodTag + ' · owner: Cloud FinOps', color: GREEN,
+        note: 'Operating cost to serve installed devices — cloud, connectivity and support tooling divided by active fleet. Unit cost is falling faster than the fleet is growing, which is what keeps margin intact; connection-broker egress is the line to watch.',
+        blocks: [
+          { title: 'What makes up the cost', source: 'Cloud finops', rows: [
+            R('Cloud compute & storage', 'Ingest, state, history', '▼ −$9', '$198', 'a'),
+            R('Connectivity & egress', 'Connection broker traffic', '▲ +$6', '$121', 'r'),
+            R('Support tooling', 'Per-device licensing', 'flat', '$54', 'g'),
+            R('Data platform', 'Pipelines and warehouse', '▼ −$3', '$39', 'g')] },
+          { title: 'Fleet and traffic', source: 'Cloud finops', rows: [
+            R('Active installed devices', 'Billable fleet', '▲ +3.4%', '2.61M', 'g'),
+            R('Messages per device per day', 'Drives egress cost', '▲ +7%', '148', 'a'),
+            R('Cost trend vs. fleet growth', 'Unit cost falling slower than fleet', '▲', '+1.8pt', 'r')] },
+          { title: 'By product line', source: 'Cloud finops', rows: [
+            R('Energy', 'Thermostat fleet', '▼', pick(['$396', '$410']), 'a'),
+            R('Smart Security', 'Cams and sensors', '▼', pick(['$447', '$462']), 'r')] }] },
+      thr: { title: 'DX speed of true throughput', headline: pick(['4.6 PRs', '4.3 PRs']), headlineNote: 'per engineer per week · target ≥ 4.5', color: GREEN,
+        note: 'Whether our delivery system is getting faster — the rate of meaningful, reviewed change reaching production, not raw commit count. Read it against the other Core 4 dimensions below: speed that costs quality is not throughput, it is debt.',
+        blocks: [
+          { title: 'Speed', source: 'GitHub + DX', rows: [
+            R('Reviewed PRs per engineer per week', '197 engineers', pick(['▲ +0.1', '▲ +0.2']), pick(['3.8', '3.6']), 'a'),
+            R('Lead time for change', 'First commit to production, p75', pick(['▼ −4h', '▼ −9h']), pick(['38h', '41h']), 'a'),
+            R('Deploy frequency', 'Production deploys per week', '▲ +3', '41', 'g')] },
+          { title: 'Effectiveness (DXI)', source: 'DX survey', rows: [
+            R('Developer Experience Index', 'Composite of 14 drivers', '▲ +3', '71', 'g'),
+            R('Weakest driver — local build time', 'Bottom quartile vs benchmark', '▼', '38', 'r')] },
+          { title: 'Quality', source: 'GitHub + Jira', rows: [
+            R('Change failure rate', 'Deploys causing incident or rollback', pick(['▲ +2.1pt', '▲ +3.0pt']), pick(['14.8%', '13.2%']), 'r'),
+            R('Failed deploy recovery', 'p50 time to restore service', '▼ −11m', '47m', 'a'),
+            R('Rework rate', 'Changes reverted or re-opened', '▲ +1.4pt', '9.2%', 'a')] },
+          { title: 'By squad', source: 'GitHub + DX', rows: [
+            R('Cloud, Data & Mobile', '18 services', '▲', pick(['4.3', '4.1']), 'g'),
+            R('Firmware', 'Hardware-in-loop test gates', '▼', pick(['2.9', '2.7']), 'r'),
+            R('Hardware', 'Bench validation cycles', 'flat', pick(['3.2', '3.1']), 'a')] }] },
+      cyc: { title: 'Cycle time', headline: pick(['2.2 days', '2.6 days']), headlineNote: 'target ≤ 2.5 days · owner: K. Boateng, Dir. Quality Eng', color: GREEN,
+        note: 'Time from starting work to delivering it. Inside target and still falling — what remains is mostly waiting: review pickup and the batch deploy window, which is where the next gain is.',
+        blocks: [
+          { title: 'Where the time goes', source: 'GitHub + Jira', rows: [
+            R('Coding', 'First commit to PR open', '▼ −0.1d', '0.8d', 'g'),
+            R('Waiting for review', 'PR open to first review', '▲ +0.2d', '1.4d', 'r'),
+            R('Review to merge', 'Approval and rework', '▼ −0.1d', '0.5d', 'a'),
+            R('Merge to production', 'Batch deploy window', 'flat', '0.4d', 'a')] },
+          { title: 'Review dynamics', source: 'GitHub', rows: [
+            R('PRs waiting over 24h', 'Of open PRs', '▲ +4pt', '31%', 'r'),
+            R('Median reviewers per PR', 'Review load spread', 'flat', '1.4', 'a'),
+            R('PR size, median', 'Lines changed', '▼ −22', '184', 'g')] },
+          { title: 'By squad', source: 'GitHub + Jira', rows: [
+            R('Cloud, Data & Mobile', 'Largest PR volume', '▼', pick(['2.7d', '3.1d']), 'a'),
+            R('Firmware', 'Hardware-in-loop test gates', '▲', pick(['4.2d', '4.6d']), 'r'),
+            R('Hardware', 'Bench validation cycles', 'flat', pick(['3.4d', '3.8d']), 'a')] }] },
+      innov: { title: 'Innovation ratio', headline: pick(['54% capacity', '51% capacity']), headlineNote: 'target ≥ 50% · owner: K. Boateng, Dir. Quality Eng', color: GREEN,
+        note: 'Share of capacity going to new product and platform value rather than maintenance, rework, waiting or unmanaged KTLO. This is the metric that confirms recovered capacity is actually being reinvested — cycle-time gains that land here are real, gains that do not are absorbed by interrupts.',
+        blocks: [
+          { title: 'Where capacity went', source: 'Jira + DX', rows: [
+            R('New product & platform value', 'Roadmap work', '▲ +2pt', pick(['42%', '39%']), 'r'),
+            R('Maintenance & managed KTLO', 'Planned upkeep', 'flat', '18%', 'a'),
+            R('Rework & defect fixing', 'Bugs and regressions', '▲ +3pt', '21%', 'r'),
+            R('Unmanaged KTLO & interrupts', 'Unplanned escalations', '▼ −2pt', '19%', 'a')] },
+          { title: 'Reinvestment check', source: 'DX', rows: [
+            R('Capacity recovered this quarter', 'From cycle-time and AI gains', '▲', '6pt', 'g'),
+            R('Recovered capacity reinvested', 'Landed in roadmap work', '▲', '2pt', 'r'),
+            R('Absorbed by interrupts', 'Recovered but re-consumed', '▲', '4pt', 'r')] },
+          { title: 'By squad', source: 'Jira + DX', rows: [
+            R('Cloud, Data & Mobile', '18 services', '▲', '48%', 'a'),
+            R('Firmware', '9 services', '▼', '36%', 'r'),
+            R('Hardware', '6 services', 'flat', '39%', 'r')] }] },
+      aiimp: { title: 'AI impact', headline: pick(['+16% lift', '+13% lift']), headlineNote: 'target ≥ 15% · owner: P. Nakamura, Dir. Connectivity', color: GREEN,
+        note: 'Measured lift attributable to AI assistance on delivery, quality and support outcomes — comparing matched cohorts of adopters and non-adopters rather than self-reported perception. Delivery lift is real; quality lift is flat, which is the thing to watch before expanding spend.',
+        blocks: [
+          { title: 'Where the lift shows up', source: 'DX + GitHub', rows: [
+            R('Delivery throughput', 'PRs per engineer, adopters vs. not', '▲ +3pt', '+16%', 'g'),
+            R('Quality', 'Defect rate on AI-assisted changes', 'flat', '−1%', 'a'),
+            R('Support resolution', 'First-contact resolution with assist', '▲ +2pt', '+12%', 'a')] },
+          { title: 'Adoption', source: 'DX survey + vendor', rows: [
+            R('Weekly active users', 'Of 197 engineers', '▲ +18', '141', 'g'),
+            R('Daily active users', 'Sustained daily use', '▲ +11', '86', 'a'),
+            R('Engineers reporting time saved', 'Self-reported, corroborated', 'flat', '68%', 'a')] },
+          { title: 'By squad', source: 'DX + GitHub', rows: [
+            R('Cloud, Data & Mobile', 'Highest adoption', '▲', '+18%', 'g'),
+            R('Firmware', 'Limited tool coverage', 'flat', '+5%', 'r'),
+            R('Hardware', 'Pilot stage', '▲', '+7%', 'a')] }] },
+      defect: { title: 'Defect rate', headline: pick(['4.1 / 1k changes', '4.6 / 1k changes']), headlineNote: 'target ≤ 6.0 · owner: K. Boateng, Dir. Quality Eng', color: GREEN,
+        note: 'Customer-impacting bugs, regressions and escaped defects raised after work was called done, normalised per thousand merged changes. Inside target and falling while throughput rises — the pairing that tells us speed is not being bought with quality.',
+        blocks: [
+          { title: 'What counts as a defect', source: 'Jira + GitHub', rows: [
+            R('Escaped to production', 'Found by customers or support', '▼ −0.3', pick(['1.6', '1.9']), 'g'),
+            R('Regressions', 'Previously working behaviour broken', '▼ −0.2', pick(['1.1', '1.3']), 'g'),
+            R('Post-done bugs', 'Raised after the story closed', 'flat', pick(['1.4', '1.4']), 'a')] },
+          { title: 'Quality gates upstream', source: 'GitHub + SonarQube', rows: [
+            R('Caught in CI', 'Automated gates before merge', '▲ +4pt', '58%', 'g'),
+            R('Caught in staging', 'Pre-release verification', 'flat', '29%', 'g'),
+            R('New-code coverage', 'Quality gate threshold 80%', '▲ +5pt', '82%', 'g')] },
+          { title: 'Against throughput', source: 'DX + GitHub', rows: [
+            R('Merged changes in window', 'Denominator for the rate', '▲ +6%', pick(['1,180', '3,410']), 'g'),
+            R('Change failure rate', 'Deploys causing incident or rollback', '▼ −1.9pt', '8.4%', 'g'),
+            R('Mean time to fix a defect', 'Raise to fix in production', '▼ −6h', '31h', 'g')] },
+          { title: 'By squad', source: 'Jira + GitHub', rows: [
+            R('Cloud, Data & Mobile', '18 services', '▼', pick(['3.6', '4.0']), 'g'),
+            R('Firmware', 'Hardware-in-loop test gates', 'flat', pick(['5.4', '5.9']), 'a'),
+            R('Hardware', 'Bench validation cycles', '▼', pick(['4.3', '4.8']), 'g')] }] },
+      aicost: { title: 'AI cost', headline: '$' + pick(['86K', '78K']) + ' / mo', headlineNote: 'target ≤ $100K / mo · owner: Finance + Platform', color: GREEN,
+        note: 'Direct spend on AI tools and usage — seats plus metered inference. Inside target, and the per-engineer cost is flat while adoption grows, but read this next to AI impact: spend is only justified where the lift is measurable.',
+        blocks: [
+          { title: 'What we spend on', source: 'Finance + vendor', rows: [
+            R('Coding assistant seats', '141 active seats', '▲ +$6K', '$48K', 'g'),
+            R('Metered inference', 'API usage across internal tools', '▲ +$3K', '$27K', 'a'),
+            R('Support assist', 'Agent-side summarisation', 'flat', '$11K', 'g')] },
+          { title: 'Unit economics', source: 'Finance', rows: [
+            R('Cost per active engineer', 'Monthly, weekly-active basis', '▼ −$32', '$610', 'g'),
+            R('Cost per point of delivery lift', 'Spend ÷ measured throughput lift', '▲', '$7.8K', 'a'),
+            R('Share of engineering opex', 'AI spend as % of group opex', 'flat', '2.4%', 'g')] }] }
+    };
+    const d = pages[this.state.page] || { blocks: [] };
+
+    const allIds = {};
+    objectivesFiltered.forEach(o => o.krs.forEach(k => { allIds[k.id] = true; }));
+    const allExpanded = Object.keys(allIds).length > 0 && Object.keys(allIds).every(id => this.state.open[id]);
+    const buName = { all: 'the company', ped: 'PED', mktg: 'Marketing', cs: 'Customer Service' }[this.state.scopeBU];
+    const HEADS = { all: '1,240 people', ped: '197 engineers', mktg: '84 people', cs: '312 people' };
+    const GROUP_HEADS = { all: '', cdm: ' · 96 engineers', firmware: ' · 58 engineers', hw: ' · 43 engineers' };
+    const krCount = objectivesFiltered.reduce((n, o) => n + o.krs.length, 0);
+    const SCOPE_NOTE = buName.replace('the company', 'Entire company') + ' · ' + HEADS[this.state.scopeBU] +
+      (this.state.scopeBU === 'ped' && effGroup !== 'all' ? ' / ' + GROUP_LABEL[effGroup] + GROUP_HEADS[effGroup] : '') +
+      ' — ' + krCount + ' KRs · ' + product.length + ' system + ' + org.length + ' flow signals';
+    return {
+      objectives: objectivesFiltered, objGridCols: `repeat(${Math.max(objectivesFiltered.length, 1)},1fr)`,
+      prodCols: Math.min(Math.max(product.length, 1), 5), orgCols: Math.min(Math.max(org.length, 1), 5),
+      scopeNote: SCOPE_NOTE, fitScale: this.state.fitScale ?? 1,
+      objEmpty: objectivesFiltered.length === 0, objEmptyMsg: 'No objectives owned by ' + buName + ' this quarter.',
+      prodEmpty: product.length === 0, prodEmptyMsg: buName + ' owns no system health signals in this scope.',
+      orgEmpty: org.length === 0, orgEmptyMsg: buName + ' has no flow & ROI metrics — these track engineering delivery investment. See System health for what applies here.',
+      product, org, detail: d, buScope, groupScope, showGroups: this.state.scopeBU === 'ped',
+      productScope, deviceScope, showDevices: this.state.product !== 'all',
+      myView: () => this.setState({ scopeBU: 'ped', scopeGroup: 'cdm' }),
+      incCount: pick(['6', '19']), incColor: RED, rangeLabel: pick(['trailing 30d', 'trailing 90d']),
+      isHome: this.state.page === 'home', isDetail: this.state.page !== 'home',
+      home: () => this.setState({ page: 'home' }),
+      allExpanded, toggleAll: () => this.setState({ open: allExpanded ? {} : allIds }),
+      toggleAllLabel: allExpanded ? 'Collapse all' : 'Expand all',
+      set30: () => this.setState({ range: '30d' }), set90: () => this.setState({ range: '90d' }),
+      bg30: r30 ? 'var(--color-accent)' : 'transparent', fg30: r30 ? '#fff' : 'var(--color-text)',
+      bg90: r30 ? 'transparent' : 'var(--color-accent)', fg90: r30 ? 'var(--color-text)' : '#fff'
+    };
+  }
+}
+</script>
+</body>
+</html>
