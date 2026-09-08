@@ -11,9 +11,9 @@
     margin: 0;
     min-height: 100%;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    padding: var(--space-8);
+    padding: clamp(var(--space-8), 8vh, 96px) var(--space-8) var(--space-8);
     background: var(--color-bg);
     color: var(--color-text);
   }
@@ -53,6 +53,16 @@
     text-transform: uppercase;
     color: var(--color-accent-700);
   }
+  /* Latest — green accent to flag the current version. */
+  .version.latest {
+    --latest-green: #3f7d54;
+    border-left: 3px solid var(--latest-green);
+  }
+  .version.latest:hover, .version.latest:focus-visible {
+    border-color: var(--color-divider);
+    border-left-color: var(--latest-green);
+  }
+  .version.latest .tag { color: var(--latest-green); }
   .version h2 { margin: var(--space-1) 0 var(--space-1); font-size: 22px; }
   .version p { margin: 0; color: var(--color-neutral-700); font-size: 14px; }
 </style>
